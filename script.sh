@@ -37,16 +37,8 @@ denormalize()
 
 project=$(basename `dirname $LXR_REPO_DIR`)
 
-case $project in
-    busybox)
-        version_dir() { tr '_.' '._'; }
-        version_rev() { tr '._' '_.'; }
-    ;;
-    *)
-        version_dir() { cat; }
-        version_rev() { cat; }
-    ;;
-esac
+version_dir() { cat; }
+version_rev() { cat; }
 
 case $cmd in
     list-tags)
