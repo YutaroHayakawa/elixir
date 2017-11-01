@@ -58,40 +58,9 @@ case $cmd in
             sed 's/\.0$//'
         )
         if [ "$1" = '-h' ]; then
-            case $project in
-              linux)
-                echo "$tags" |
-                tac |
-                sed -r 's/^(((v2.6)\.([0-9]*)(.*))|(v[0-9])\.([0-9]*)(.*))$/\3\6 \3\6.\4\7 \3\6.\4\7\5\8/'
-              ;;
-              u-boot)
-                echo "$tags" |
-                grep '^v20' |
-                tac |
-                sed -r 's/^(v20..)(.*)$/new \1 \1\2/'
-
-                echo "$tags" |
-                grep -E '^(v1|U)' |
-                tac |
-                sed -r 's/^/old by-version /'
-
-                echo "$tags" |
-                grep -E '^(LABEL|DENX)' |
-                tac |
-                sed -r 's/^/old by-date /'
-
-              ;;
-              busybox)
-                echo "$tags" |
-                tac |
-                sed -r 's/^([0-9])\.([0-9]*)(.*)$/v\1 \1.\2 \1.\2\3/'
-              ;;
-              *)
-                echo "$tags" |
-                tac |
-                sed -r 's/^/XXX XXX /'
-              ;;
-            esac
+            echo "$tags" |
+            tac |
+            sed -r 's/^/All All /'
         else
             echo "$tags"
         fi
